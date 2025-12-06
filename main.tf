@@ -1,3 +1,4 @@
+# NOTE: Needed to initialize Docker?
 provider "docker" {}
 
 # NOTE: 'random_pet' is a reserved Terraform resource name, 'petname' is just a field label
