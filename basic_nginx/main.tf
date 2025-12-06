@@ -9,14 +9,19 @@ resource "random_pet" "petname" {
 }
 
 resource "docker_image" "nginx" {
-  name         = "nginx:latest"
+  name         = "nginx:1.29"
   keep_locally = false
+}
+
+# TODO: Use a dedicated name for each project
+locals {
+  container_name = "tutorial"
 }
 
 resource "docker_container" "nginx" {
   image = docker_image.nginx.image_id
   # NOTE: Alternatively, one can use the 'format()' built-in function
-  name  = "tutorial-${random_pet.petname.id}"
+  name  = "${local.container_name}-${random_pet.petname.id}"
   ports {
     internal = 80
     external = 8080
