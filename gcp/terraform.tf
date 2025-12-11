@@ -5,7 +5,7 @@ terraform {
       source = "hashicorp/google"
       # NOTE: Allow patch version updates, but no changes to major and minor versions via '~>'
       # ('~>' applies to right-most version specified)
-      version = "~> 6.8.0"
+      version = "~> 7.13.0"
     }
   
     random = {
