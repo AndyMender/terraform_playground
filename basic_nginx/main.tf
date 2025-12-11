@@ -17,6 +17,9 @@ data "docker_registry_image" "nginx" {
   name = "nginx:1.29"
 }
 
+# NOTE: A custom image can be built from a local Dockerfile as well
+# WARNING: Image builds time out after 20 minutes unless configured for more
+# NOTE2: Builds support checking for changes in local files
 resource "docker_image" "nginx" {
   name         = data.docker_registry_image.nginx.name
   # NOTE: Allows tracking container content changes as opposed to just tracking the image tag
