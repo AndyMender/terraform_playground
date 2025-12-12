@@ -7,9 +7,9 @@ terraform {
       # ('~>' applies to right-most version specified)
       version = "~> 7.13.0"
     }
-  
+
     random = {
-      source  = "hashicorp/random"
+      source = "hashicorp/random"
       # NOTE: Multiple ','-separated version conditions are allowed
       version = "~> 3.7.2"
     }
