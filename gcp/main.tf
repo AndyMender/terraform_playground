@@ -4,7 +4,7 @@ provider "google" {
   zone    = "eu-west1-a"
 }
 
-resource "google_project" "my_project" {
+resource "google_project" "mender_project" {
   name       = "Mender Cloud Project"
   project_id = "mender-gcp-demo"
   # TODO: Below is an example org ID - has to be replaced by the real value when registering on GCP
