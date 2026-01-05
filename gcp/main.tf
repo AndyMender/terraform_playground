@@ -24,7 +24,6 @@ resource "google_compute_network" "mender-vpc" {
 resource "google_compute_subnetwork" "mender-vpc-eu-west1" {
   name          = "mender-vpc-eu-west1"
   ip_cidr_range = "10.132.0.0/20"
-  region        = "eu-west1"
   network       = google_compute_network.mender-vpc.id
   # NOTE: This is the default stack_type
   stack_type = "IPV4_ONLY"
