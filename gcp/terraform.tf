@@ -7,12 +7,6 @@ terraform {
       # ('~>' applies to right-most version specified)
       version = "~> 7.14.0"
     }
-
-    random = {
-      source = "hashicorp/random"
-      # NOTE: Multiple ','-separated version conditions are allowed
-      version = "~> 3.7.2"
-    }
   }
   # NOTE: Versions 1.x are allowed. Below is set as the lowest compatible version.
   required_version = "~> 1.7"
