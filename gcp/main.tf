@@ -45,28 +45,30 @@ resource "google_compute_subnetwork" "mender-vpc-eu-west1" {
 
 # NOTE: Several firewall rules are required,
 # since Terraform instantly links any 'allow' and 'deny' rules to provided tags
-# TODO: Add ALLOW ruleset for SSH traffic if needed
-resource "google_compute_firewall" "mender-vpc-firewall-main" {
-  name    = "mender-vpc-firewall-main"
+
+resource "google_compute_firewall" "mender-vpc-firewall-default-deny" {
+  name    = "mender-vpc-firewall-default-deny"
   network = google_compute_network.mender-vpc.name
 
   # Allow anonymous pings
-  allow {
-    protocol = "icmp"
-  }
-
   deny {
     protocol = "all"
   }
 }
 
+resource "google_compute_firewall" "mender-vpc-firewall-allow-ping" {
+  name = "mender-vpc-firewall-allow-ping"
+  network = google_compute_network.mender-vpc.name
+
+  allow {
+    protocol = "icmp"
+  }
+}
+
+# TODO: Add ALLOW ruleset for SSH traffic if needed
 resource "google_compute_firewall" "mender-vpc-firewall-allow-web" {
   name    = "mender-vpc-firewall-allow-web"
   network = google_compute_network.mender-vpc.name
-
-  deny {
-    protocol = "all"
-  }
 
   allow {
     protocol = "tcp"
