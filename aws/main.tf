@@ -14,18 +14,18 @@ resource "aws_vpc" "mender-vpc" {
 }
 
 resource "aws_subnet" "mender-vpc-eu-west2" {
-  vpc_id = aws_vpc.mender-vpc.id
+  vpc_id            = aws_vpc.mender-vpc.id
   availability_zone = "euw2-az2"
-  cidr_block = "10.132.0.0/20"
+  cidr_block        = "10.132.0.0/20"
   # NOTE: Defaults to 'false'
   ipv6_native = false
 }
 
 # Secondary CIDR range for use in Kubernetes if needed
 resource "aws_subnet" "mender-vpc-eu-west2-secondary" {
-  vpc_id = aws_vpc.mender-vpc.id
+  vpc_id            = aws_vpc.mender-vpc.id
   availability_zone = "euw2-az1"
-  cidr_block = "192.168.5.0/20"
+  cidr_block        = "192.168.5.0/20"
   # NOTE: Defaults to 'false'
   ipv6_native = false
 }
@@ -68,25 +68,25 @@ resource "aws_networkfirewall_rule_group" "mender-vpc-firewall-allow-web" {
   rule_group {
     rule_variables {
       port_sets {
-          key = "HTTP_PORTS"
-          port_set {
-            definition = ["443", "80", "8080"]
-          }
+        key = "HTTP_PORTS"
+        port_set {
+          definition = ["443", "80", "8080"]
+        }
       }
-    }   
+    }
     rules_source {
       stateful_rule {
         action = "PASS"
         header {
-          destination       =  "ANY"
-          destination_port  =  "$HTTP_PORTS"
-          protocol          =  "TCP"
-          direction         =  "ANY"
-          source_port       =  "ANY"
-          source            =  "ANY"
+          destination      = "ANY"
+          destination_port = "$HTTP_PORTS"
+          protocol         = "TCP"
+          direction        = "ANY"
+          source_port      = "ANY"
+          source           = "ANY"
         }
         rule_option {
-          keyword    = "sid"
+          keyword  = "sid"
           settings = ["1"]
         }
       }
