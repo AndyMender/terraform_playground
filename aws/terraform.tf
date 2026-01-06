@@ -1,0 +1,19 @@
+terraform {
+  required_providers {
+    aws = {
+      # N: Shorthand provider names will default to 'registry.terraform.io' to fully resolve
+      source = "hashicorp/aws"
+      # NOTE: Allow patch version updates, but no changes to major and minor versions via '~>'
+      # ('~>' applies to right-most version specified)
+      version = "~> 6.27.0"
+    }
+
+    random = {
+      source = "hashicorp/random"
+      # NOTE: Multiple ','-separated version conditions are allowed
+      version = "~> 3.7.2"
+    }
+  }
+  # NOTE: Versions 1.x are allowed. Below is set as the lowest compatible version.
+  required_version = "~> 1.7"
+}
